@@ -1,43 +1,29 @@
-import { Metadata } from 'next';
+import "./globals.css";
+import { Inter, Orbitron } from "next/font/google";
+import Navbar from "../components/Navbar";
 
-import { SITE } from '~/config.js';
+const inter = Inter({ subsets: ["latin"] });
+const orbitron = Orbitron({ subsets: ["latin"], weight: ["400", "700"] });
 
-import Providers from '~/components/atoms/Providers';
-import Header from '~/components/widgets/Header';
-import Announcement from '~/components/widgets/Announcement';
-import Footer2 from '~/components/widgets/Footer2';
-
-import { Inter as CustomFont } from 'next/font/google';
-import '~/assets/styles/base.css';
-
-const customFont = CustomFont({ subsets: ['latin'], variable: '--font-custom' });
-
-export interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export const metadata: Metadata = {
-  title: {
-    template: `%s — ${SITE.name}`,
-    default: SITE.title,
-  },
-  description: SITE.description,
+export const metadata = {
+  title: "CyberWebStack",
+  description: "Next-gen Cyber & Cloud Solutions",
 };
 
-export default function RootLayout({ children }: LayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`motion-safe:scroll-smooth 2xl:text-[24px] ${customFont.variable} font-sans`}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body className="tracking-tight antialiased text-gray-900 dark:text-slate-300 dark:bg-slate-900">
-        <Providers>
-          <Announcement />
-          <Header />
-          <main>{children}</main>
-          <Footer2 />
-        </Providers>
+    <html lang="en">
+      <body className={`${inter.className} bg-black text-white`}>
+        {/* Background Cyber Gradient */}
+        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-black">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,255,255,0.15),transparent)] animate-pulse"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,0,255,0.15),transparent)] animate-pulse"></div>
+        </div>
+
+        {/* Navbar */}
+        <Navbar orbitron={orbitron.className} />
+        
+        <main className="pt-20">{children}</main>
       </body>
     </html>
   );

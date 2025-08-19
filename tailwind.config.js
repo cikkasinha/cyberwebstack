@@ -1,20 +1,18 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx,md,mdx}'],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
-        primary: colors.blue,
-        secondary: colors.blue,
-      },
-      fontFamily: {
-        sans: ['var(--font-custom)', ...defaultTheme.fontFamily.sans],
+        cyber: {
+          dark: "#0f172a",   // dark background
+          neon: "#38bdf8",   // neon highlight
+        },
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
-  darkMode: 'class',
+  plugins: [],
 };
